@@ -1,6 +1,6 @@
 import os
 
-os.environ["USE_LIBUV"] = "0"
+# os.environ["USE_LIBUV"] = "0"
 
 from vllm import LLM, SamplingParams
 
