@@ -13,7 +13,7 @@ def main():
     ]
     sampling_params = SamplingParams(temperature=0.8, top_p=0.95)
 
-    llm = LLM(model="facebook/opt-125m")
+    llm = LLM(model="facebook/opt-125m", gpu_memory_utilization=0.7)
 
     outputs = llm.generate(prompts, sampling_params)
 
