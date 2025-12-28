@@ -17,7 +17,7 @@ def return_prompt(prompt_name: str) -> str:
     return prompts_dict.get(prompt_name)
 
 
-def return_prompt_with_blanks(prompt_name: str, args: [str]) -> str:
+def return_prompt_with_blanks(prompt_name: str, args: list[str]) -> str:
     """
     Fetch a given prompt from the prompts dict with additional arguments for filling in blanks.
     Arguments should be passed as a list of strings in the order they'll appear in the prompt's text.

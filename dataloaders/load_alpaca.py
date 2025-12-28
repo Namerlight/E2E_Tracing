@@ -60,6 +60,5 @@ if __name__ == "__main__":
     row = alpaca_dataset.get_row(row_idx=125)
     for item in row:
         print(item, "---", row[item])
-    
 
     pass

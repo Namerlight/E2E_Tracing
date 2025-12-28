@@ -8,8 +8,9 @@ if __name__ == "__main__":
 
     system_prompt = alpaca_prompt.get("System")
     user_prompts = process_prompt(prompt_text=alpaca_prompt.get('User'), mode="all")
+    user_prompts = [alpaca_prompt.get('User')] + user_prompts
 
     print(system_prompt)
 
     for u in user_prompts:
-        print(u)
+        print(u, "\n")

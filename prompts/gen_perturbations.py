@@ -1,5 +1,6 @@
 import string
 import textwrap
+import collections
 from functools import partial
 
 
@@ -101,7 +102,7 @@ def mask_words_important(prompt_text: str, imp_words: [str]) -> [str]:
     return list_of_masked_texts
 
 
-def process_prompt(prompt_text: str, mode: str, words_to_mask: [str] = None) -> [str]:
+def process_prompt(prompt_text: str, mode: str, words_to_mask: list[str] = None) -> list[str]:
     """
     Processes an input prompt text. Handles both single-line and multi-line prompts.
 
@@ -135,7 +136,7 @@ def process_prompt(prompt_text: str, mode: str, words_to_mask: [str] = None) -> 
             replaced[line_idx] = masked_line
             masked_prompts.append("\n".join(replaced))
 
-    return masked_prompts
+    return [prompt_text] + masked_prompts
 
 
 if __name__ == "__main__":
