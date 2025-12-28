@@ -1,6 +1,6 @@
 from vllm import LLM, SamplingParams
 
-from prompts import process_prompt
+from prompts import process_prompt, apply_chat_template_over_list
 from dataloaders import alpaca_dataloader
 
 def main():
@@ -9,19 +9,20 @@ def main():
 
     system_prompt = alpaca_prompt.get("System")
     user_prompts = process_prompt(prompt_text=alpaca_prompt.get('User'), mode="all")
-
-    # print(system_prompt)
+    conversation_templates = apply_chat_template_over_list(system_prompt=system_prompt, prompts_list=user_prompts)
 
     sampling_params = SamplingParams(temperature=0.8, top_p=0.95)
 
-    llm = LLM(model="google/gemma-3-4b-it", gpu_memory_utilization=0.8)
+    llm = LLM(model="HuggingFaceTB/SmolLM2-1.7B-Instruct", gpu_memory_utilization=0.8)
 
-    outputs = llm.generate(user_prompts, sampling_params)
+    outputs = llm.chat(conversation_templates, sampling_params, use_tqdm=True)
 
-    for output in outputs:
-        prompt = output.prompt
+    print(outputs)
+
+    for output, user_prompt in zip(outputs, user_prompts):
+        prompt = user_prompt
         generated_text = output.outputs[0].text
-        print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
+        print(f"Prompt: {user_prompt}, Generated text: {generated_text}", "\n")
 
 if __name__ == "__main__":
     main()

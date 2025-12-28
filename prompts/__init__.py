@@ -1,2 +1,2 @@
-from .gen_prompts import prompts_dict, return_prompt, return_prompt_with_blanks
+from .gen_prompts import prompts_dict, return_prompt, return_prompt_with_blanks, apply_chat_template, apply_chat_template_over_list
 from .gen_perturbations import process_prompt

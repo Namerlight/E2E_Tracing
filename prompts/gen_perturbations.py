@@ -37,7 +37,7 @@ def clean_word(input_wd: str) -> str:
     return cleaned
 
 
-def mask_words_all(prompt_text: str) -> [str]:
+def mask_words_all(prompt_text: str) -> list[str]:
     """
     Perturbs all words.
     First, creates a list of words that are equal in length to the original line. Each item in the list is processed
@@ -65,7 +65,7 @@ def mask_words_all(prompt_text: str) -> [str]:
     return list_of_masked_texts
 
 
-def mask_words_important(prompt_text: str, imp_words: [str]) -> [str]:
+def mask_words_important(prompt_text: str, imp_words: list[str]) -> list[str]:
     """
     Only perturbs a specific set of words rather than all words.
     First, creates a list of words that are equal in length to the original line. Each item in the list that matches
